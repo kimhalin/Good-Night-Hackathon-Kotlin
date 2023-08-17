@@ -3,8 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
 	id("org.springframework.boot") version "3.1.2"
 	id("io.spring.dependency-management") version "1.1.2"
-    id("org.jlleitschuh.gradle.ktlint") version "11.5.1"
-	kotlin("jvm") version "1.8.22"
+	kotlin ("jvm") version "1.8.22"
 	kotlin("plugin.spring") version "1.8.22"
 	kotlin("plugin.jpa") version "1.8.22"
 }
@@ -17,8 +16,8 @@ java {
 }
 
 configurations {
-	compileOnly {
-		extendsFrom(configurations.annotationProcessor.get())
+	named("compileOnly") {
+		extendsFrom(configurations.getByName("annotationProcessor"))
 	}
 }
 
@@ -32,17 +31,13 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("com.mysql:mysql-connector-j")
-
-    annotationProcessor("org.projectlombok:lombok")
-    compileOnly("org.projectlombok:lombok")
-
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+	runtimeOnly("com.mysql:mysql-connector-j")
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
-		freeCompilerArgs += "-Xjsr305=strict"
+		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "17"
 	}
 }
