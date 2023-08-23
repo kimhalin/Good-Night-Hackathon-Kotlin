@@ -7,7 +7,7 @@ import com.example.goodnight.domain.review.dto.response.ReviewResponse
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/v1/reviews")
+@RequestMapping("/reviews")
 class ReviewController constructor(
     private val reviewService: ReviewService,
 ){
