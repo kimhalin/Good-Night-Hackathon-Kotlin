@@ -23,12 +23,8 @@ class ReviewService constructor(
     }
 
     fun findAllReviews(request: FindAllReviewsRequest): List<ReviewResponse> {
-        if (request.score == null) {
-            return reviewRepository.findAllByMovieIdAndScore(request.movieId, 0f)
-                .map { review  -> ReviewResponse.of(review) }
-        }
-
-        return reviewRepository.findAllByMovieIdAndScore(request.movieId, request.score)
-            .map { review  -> ReviewResponse.of(review) }
+        val score = request.score ?: 0f
+        return reviewRepository.findAllByMovieIdAndScore(request.movieId, score)
+            .map { review -> ReviewResponse.of(review) }
     }
 }
