@@ -11,7 +11,7 @@ import com.example.goodnight.global.common.dto.PaginatedResponse
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/v1/movies")
+@RequestMapping("/movies")
 class MovieController constructor(
     private val movieService: MovieService,
 ) {
